@@ -174,83 +174,88 @@ export function App() {
               </span>
             </div>
           </div>
-          {!overview && (
-            <div className="walking-controls">
-              <div
-                className="movement-pad"
-                role="group"
-                aria-label="ปุ่มเดินชมร้าน"
-              >
-                {directions.map(({ key, label, Icon }) => (
-                  <button
-                    key={key}
-                    className={"move-" + key}
-                    aria-label={label}
-                    disabled={!ready}
-                    onPointerDown={(e) => {
-                      e.preventDefault();
-                      e.currentTarget.setPointerCapture(e.pointerId);
-                      movement.current[key] = true;
-                    }}
-                    onPointerUp={() => (movement.current[key] = false)}
-                    onLostPointerCapture={() => (movement.current[key] = false)}
-                    onPointerCancel={() => (movement.current[key] = false)}
-                    onKeyDown={(e) => {
-                      if (e.key === " " || e.key === "Enter") {
-                        e.preventDefault();
-                        movement.current[key] = true;
-                      }
-                    }}
-                    onKeyUp={() => (movement.current[key] = false)}
-                    onBlur={() => (movement.current[key] = false)}
-                  >
-                    <Icon size={18} />
-                  </button>
-                ))}
-              </div>
-              <div className="walking-tip">
-                <span>
-                  <kbd>W</kbd>
-                  <kbd>A</kbd>
-                  <kbd>S</kbd>
-                  <kbd>D</kbd> เดินชมร้าน
-                </span>
-                <span>
-                  <MousePointer2 size={12} /> ลากเพื่อมอง · แตะผลิตภัณฑ์เพื่อดู
-                </span>
-              </div>
-            </div>
-          )}
-          <nav className="department-nav" aria-label="เลือกมุมชมร้าน">
-            {destinations.map((d, i) => {
-              const Icon = [Home, LayoutGrid, Layers3, Flower2, Camera][i];
-              return (
-                <button
-                  key={d.id}
-                  aria-current={
-                    active === d.id && !overview ? "location" : undefined
-                  }
-                  onClick={() => navigate(d.id)}
+          <div className="bottom-controls">
+            {!overview && (
+              <div className="walking-controls">
+                <div
+                  className="movement-pad"
+                  role="group"
+                  aria-label="ปุ่มเดินชมร้าน"
                 >
-                  <Icon size={16} />
-                  <span>{d.label}</span>
-                </button>
-              );
-            })}
-          </nav>
-          <button
-            className="collection-invite"
-            onClick={() => select(products[0].id)}
-          >
-            <img src="/assets/balm-blue.webp" alt="" />
-            <span>
-              <small>The featured collection</small>
-              <strong>Queen’s Balm</strong>
+                  {directions.map(({ key, label, Icon }) => (
+                    <button
+                      key={key}
+                      className={"move-" + key}
+                      aria-label={label}
+                      disabled={!ready}
+                      onPointerDown={(e) => {
+                        e.preventDefault();
+                        e.currentTarget.setPointerCapture(e.pointerId);
+                        movement.current[key] = true;
+                      }}
+                      onPointerUp={() => (movement.current[key] = false)}
+                      onLostPointerCapture={() =>
+                        (movement.current[key] = false)
+                      }
+                      onPointerCancel={() => (movement.current[key] = false)}
+                      onKeyDown={(e) => {
+                        if (e.key === " " || e.key === "Enter") {
+                          e.preventDefault();
+                          movement.current[key] = true;
+                        }
+                      }}
+                      onKeyUp={() => (movement.current[key] = false)}
+                      onBlur={() => (movement.current[key] = false)}
+                    >
+                      <Icon size={18} />
+                    </button>
+                  ))}
+                </div>
+                <div className="walking-tip">
+                  <span>
+                    <kbd>W</kbd>
+                    <kbd>A</kbd>
+                    <kbd>S</kbd>
+                    <kbd>D</kbd> เดินชมร้าน
+                  </span>
+                  <span>
+                    <MousePointer2 size={12} /> ลากเพื่อมอง ·
+                    แตะผลิตภัณฑ์เพื่อดู
+                  </span>
+                </div>
+              </div>
+            )}
+            <nav className="department-nav" aria-label="เลือกมุมชมร้าน">
+              {destinations.map((d, i) => {
+                const Icon = [Home, LayoutGrid, Layers3, Flower2, Camera][i];
+                return (
+                  <button
+                    key={d.id}
+                    aria-current={
+                      active === d.id && !overview ? "location" : undefined
+                    }
+                    onClick={() => navigate(d.id)}
+                  >
+                    <Icon size={16} />
+                    <span>{d.label}</span>
+                  </button>
+                );
+              })}
+            </nav>
+            <button
+              className="collection-invite"
+              onClick={() => select(products[0].id)}
+            >
+              <img src="/assets/balm-blue.webp" alt="" />
               <span>
-                รู้จักคอลเลกชันนี้ <ArrowUpRight size={13} />
+                <small>The featured collection</small>
+                <strong>Queen’s Balm</strong>
+                <span>
+                  รู้จักคอลเลกชันนี้ <ArrowUpRight size={13} />
+                </span>
               </span>
-            </span>
-          </button>
+            </button>
+          </div>
         </div>
       </div>
       {selected && (
