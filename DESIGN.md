@@ -2,6 +2,8 @@
 
 Source of truth: user's Drive Mini CI Brand — CURATED SEOUL TH.pdf. Read pages 15–19 (mood, typography and colour) and 21–30 (logo usage). Downloaded logos are used without recolouring or changing proportions. No AI-generated brand or product assets.
 
+Current logo override supplied by the user: Curated_SEOUL_logo_POUCH24_blue.png (Drive 1aJyEdmc84Aa84WWkei65q48hGnWy--jJ). Use its original blue (#1B3190), transparent background and natural horizontal proportion on ivory. This asset is shared by the HUD, loading screen and 3D wall plaque through src/shared/brand/brand.ts. Earlier logo colour variants remain source assets.
+
 Palette follows the explicit CORE brand-book page 19, also used by application pages 26 and 29: Midnight Navy #2A3856, Warm Ivory #F6F3EE, Brushed Bronze #B08A5A, Cloud Blue #D7E3EF, Sand #D9D1C2, Charcoal #222426. Page 18 contains a slightly different draft palette; page 19 wins for this prototype.
 
 Cormorant Garamond for English display, Poppins for English UI. The specified LINE Seed Sans TH font was not included in the inspected asset folders; self-hosted Noto Sans Thai is the temporary Thai fallback. Retain generous wordmark clear space and natural aspect ratio.

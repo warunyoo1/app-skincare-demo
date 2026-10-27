@@ -29,6 +29,7 @@ import type {
   Movement,
 } from "../features/showroom/components/CameraRig";
 import { Dialog } from "../shared/ui/Dialog";
+import { brandLogo } from "../shared/brand/brand";
 const ShowroomScene = lazy(
   () => import("../features/showroom/components/ShowroomScene"),
 );
@@ -94,7 +95,7 @@ export function App() {
       </div>
       {!ready && (
         <div className="loading-screen" role="status">
-          <img src="/assets/logo-navy.webp" alt="Curated Seoul" />
+          <img src={brandLogo.src} alt={brandLogo.alt} />
           <span>กำลังเตรียมร้านให้คุณ…</span>
         </div>
       )}
@@ -122,7 +123,7 @@ export function App() {
         </button>
         <div id="showroom-panels" className="hud-panels" hidden={hidden}>
           <header className="brand-header">
-            <img src="/assets/logo-navy.webp" alt="Curated Seoul" />
+            <img src={brandLogo.src} alt={brandLogo.alt} />
             <span>Refined selections from Seoul</span>
           </header>
           <div className="tools">

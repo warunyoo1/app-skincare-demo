@@ -45,6 +45,11 @@
     {
       "asset": "water.webp",
       "source": "https://drive.google.com/file/d/1k16BIGLC-FoRmfZgX2dJ1TkpsCgCqa1d/view?usp=drivesdk"
+    },
+    {
+      "asset": "logo-current.webp",
+      "source": "https://drive.google.com/file/d/1aJyEdmc84Aa84WWkei65q48hGnWy--jJ/view",
+      "originalFileName": "Curated_SEOUL_logo_POUCH24_blue.png"
     }
   ]
 }

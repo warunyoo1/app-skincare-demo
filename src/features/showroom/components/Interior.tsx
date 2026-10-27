@@ -1,4 +1,5 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { SRGBColorSpace } from "three";
 import { useTexture } from "@react-three/drei";
 import { products } from "../../products/data/catalog";
 import { Block, Label, Photo } from "./Primitives";
@@ -6,6 +7,8 @@ import { ProductVessel } from "./ProductVessel";
 import { createAlcoveGeometry } from "../lib/alcoveGeometry";
 import { SKINCARE_SHELVES } from "../config/fixtures";
 import { SkincareShelf } from "./SkincareShelf";
+import { brandLogo } from "../../../shared/brand/brand";
+import { createPhotoGeometry } from "../lib/photoGeometry";
 import { useSurfaceMaps } from "../materials/useSurfaceMaps";
 import {
   AmbientShadow,
@@ -39,13 +42,30 @@ function Alcove({ x, shelves = false }: { x: number; shelves?: boolean }) {
   );
 }
 function BrandMark() {
-  const map = useTexture("/assets/logo-ivory.webp");
+  const original = useTexture(brandLogo.src);
+  const map = useMemo(() => {
+    const texture = original.clone();
+    texture.colorSpace = SRGBColorSpace;
+    return texture;
+  }, [original]);
+  useEffect(() => () => map.dispose(), [map]);
+  const panel = useMemo(() => createPhotoGeometry(3.9, 0.92, 0.1), []);
   const image = map.image as HTMLImageElement;
   return (
-    <mesh position={[0, 4.55, -5.8]}>
-      <planeGeometry args={[3.25, (3.25 * image.height) / image.width]} />
-      <meshBasicMaterial map={map} transparent depthWrite={false} />
-    </mesh>
+    <group position={[0, 4.65, -5.8]}>
+      <mesh geometry={panel} position={[0, 0, -0.025]}>
+        <meshBasicMaterial color="#f6f3ee" toneMapped={false} />
+      </mesh>
+      <mesh>
+        <planeGeometry args={[3.25, (3.25 * image.height) / image.width]} />
+        <meshBasicMaterial
+          map={map}
+          transparent
+          depthWrite={false}
+          toneMapped={false}
+        />
+      </mesh>
+    </group>
   );
 }
 function Floor() {
@@ -111,14 +131,6 @@ export function Interior({ onSelect }: { onSelect: (id: string) => void }) {
       <Block position={[6.3, 2.6, 0]} size={[0.2, 5.2, 12]} color="#f6f3ee" />
       <Block position={[0, 5.25, -2]} size={[12.5, 0.16, 8]} color="#e6dfd2" />
       <BrandMark />
-      <Label
-        text="Refined selections from Seoul"
-        position={[0, 3.83, -5.78]}
-        width={3.5}
-        height={0.22}
-        color="#d9d1c2"
-        serif
-      />
       {[-3.8, 0, 3.8].map((x) => (
         <Alcove key={x} x={x} shelves={x === -3.8} />
       ))}

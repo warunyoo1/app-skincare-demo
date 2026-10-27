@@ -24,3 +24,4 @@ for (const color of ["navy", "bronze", "ivory"])
     .webp({ lossless: true })
     .toFile("public/assets/logo-" + color + ".webp");
 console.log("Prepared " + (tasks.length + 3) + " local brand assets.");
+await import("./prepare-brand-logo.mjs");

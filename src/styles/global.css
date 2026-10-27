@@ -100,7 +100,7 @@ a {
   max-width: 250px;
 }
 .brand-header img {
-  width: 180px;
+  width: 220px;
   height: auto;
 }
 .brand-header > span {
@@ -844,7 +844,7 @@ kbd {
     left: 20px;
   }
   .brand-header img {
-    width: 145px;
+    width: 180px;
   }
   .brand-header > span {
     display: none;
